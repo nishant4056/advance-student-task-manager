@@ -1,247 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>NEXUS — Student Task Manager</title>
-
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080f1e">
+  <title>NEXUS — Student Task Manager</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">✦</span>
+        <span><b>NE<em>XUS</em></b><small>STUDENT WORKSPACE</small></span>
+      </div>
 
-    <div class="app">
+      <nav class="main-nav">
+        <button class="nav-item active" data-view="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-item" data-view="tasks"><span>✓</span> My Tasks</button>
+        <button class="nav-item" data-view="calendar"><span>▦</span> Calendar</button>
+        <button class="nav-item" data-view="analytics"><span>◷</span> Analytics</button>
+      </nav>
 
-        <aside class="sidebar">
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="quick-nav">
+        <button class="nav-item" data-view="subjects"><span>◇</span> Subjects</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Settings</button>
+      </nav>
 
-            <div class="logo">
-                NEX<span>US</span>
+      <div class="sidebar-note">
+        <div class="mountain">✧</div>
+        <b>Small steps. Big results.</b>
+        <p>Make today count.</p>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <label class="search">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Search tasks, subjects...">
+        </label>
+        <div class="profile-actions">
+          <button class="icon-button" id="themeButton" title="Toggle theme">☼</button>
+          <span class="muted">Student Workspace</span>
+          <div class="avatar">S</div>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <p id="todayLabel">YOUR STUDY SPACE</p>
+          <h1 id="greeting">Good day 👋</h1>
+          <p>Your academic command center. Let's make progress.</p>
+        </div>
+        <div class="weather">
+          <span>✦</span>
+          <div><b id="levelLabel">Level 1</b><small id="xpLabel">0 XP earned</small></div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-icon blue">▤</div>
+          <div><span>Total Tasks</span><strong id="totalCount">0</strong><small class="muted">Your study workload</small></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon green">✓</div>
+          <div><span>Completed</span><strong id="completedCount">0</strong><small class="up" id="completionRate">0% complete</small></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon orange">◷</div>
+          <div><span>In Progress</span><strong id="progressCount">0</strong><small class="muted">Keep going</small></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon pink">⚑</div>
+          <div><span>Overdue</span><strong id="overdueCount">0</strong><small class="muted">Need attention</small></div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="panel">
+          <div class="panel-heading">
+            <div><h2 id="taskSectionTitle">My Tasks</h2><span class="view-caption">Organize your work. Stay ahead.</span></div>
+            <div class="heading-actions">
+              <select id="sortSelect" aria-label="Sort tasks">
+                <option value="priority">Priority</option>
+                <option value="due">Due date</option>
+                <option value="created">Recently added</option>
+                <option value="title">Task name</option>
+              </select>
+              <button class="primary-button" id="addTaskButton">＋ New Task</button>
             </div>
+          </div>
 
-            <nav>
-                <button class="nav-item active">◈ Dashboard</button>
-                <button class="nav-item">✓ Tasks</button>
-                <button class="nav-item">▣ Calendar</button>
-                <button class="nav-item">◉ Analytics</button>
-                <button class="nav-item">◆ Subjects</button>
-                <button class="nav-item">⚙ Settings</button>
-            </nav>
-
-            <div class="profile">
-                <div class="avatar">N</div>
-
-                <div>
-                    <strong>Student</strong>
-                    <small>Level 12 • 1840 XP</small>
-                </div>
-            </div>
-
-        </aside>
-
-
-        <main class="main">
-
-            <header class="topbar">
-
-                <div>
-                    <h1>Good Evening 👋</h1>
-                    <p>Your academic command center</p>
-                </div>
-
-                <button class="add-btn" id="openModal">
-                    + New Task
-                </button>
-
-            </header>
-
-
-            <section class="stats">
-
-                <div class="stat-card">
-                    <span>Total Tasks</span>
-                    <strong id="totalTasks">0</strong>
-                    <small>All assignments</small>
-                </div>
-
-                <div class="stat-card">
-                    <span>Completed</span>
-                    <strong id="completedTasks">0</strong>
-                    <small>Keep going</small>
-                </div>
-
-                <div class="stat-card">
-                    <span>At Risk</span>
-                    <strong id="riskTasks">0</strong>
-                    <small>Need attention</small>
-                </div>
-
-                <div class="stat-card">
-                    <span>Streak</span>
-                    <strong>7 🔥</strong>
-                    <small>Days active</small>
-                </div>
-
+          <div class="board">
+            <section class="task-column">
+              <div class="column-title"><span class="status-dot todo"></span><h3>To Do</h3><b id="todoBadge">0</b></div>
+              <div class="task-list" id="todoList"></div>
             </section>
-
-
-            <section class="dashboard">
-
-                <div class="panel">
-
-                    <div class="panel-header">
-                        <h2>Priority Tasks</h2>
-
-                        <span>
-                            AI Priority Engine
-                        </span>
-                    </div>
-
-                    <div id="taskList"></div>
-
-                </div>
-
-
-                <div class="right-column">
-
-                    <div class="panel">
-
-                        <h2>Priority Engine</h2>
-
-                        <div class="priority-score"
-                             id="priorityScore">
-                            0
-                        </div>
-
-                        <p>Current highest priority</p>
-
-                        <div class="metric">
-                            <div>
-                                <span>Urgency</span>
-                                <span id="urgencyValue">0%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div id="urgencyBar"></div>
-                            </div>
-                        </div>
-
-
-                        <div class="metric">
-                            <div>
-                                <span>Importance</span>
-                                <span id="importanceValue">0%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div id="importanceBar"></div>
-                            </div>
-                        </div>
-
-
-                        <div class="metric">
-                            <div>
-                                <span>Difficulty</span>
-                                <span id="difficultyValue">0%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div id="difficultyBar"></div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="panel">
-
-                        <div class="xp-header">
-                            <h2>Level 12</h2>
-                            <span>1840 XP</span>
-                        </div>
-
-                        <div class="xp-bar">
-                            <div></div>
-                        </div>
-
-                        <small>
-                            660 XP until Level 13
-                        </small>
-
-                    </div>
-
-                </div>
-
+            <section class="task-column">
+              <div class="column-title"><span class="status-dot doing"></span><h3>In Progress</h3><b id="doingBadge">0</b></div>
+              <div class="task-list" id="doingList"></div>
             </section>
-
-        </main>
-
-    </div>
-
-
-    <!-- CREATE TASK MODAL -->
-
-    <div class="modal" id="taskModal">
-
-        <div class="modal-box">
-
-            <h2>Create New Task</h2>
-
-            <label>Task Name</label>
-            <input
-                id="taskName"
-                placeholder="Compiler Design Assignment"
-            >
-
-            <label>Subject</label>
-            <input
-                id="taskSubject"
-                placeholder="Compiler Design"
-            >
-
-            <label>Deadline</label>
-            <input
-                id="taskDeadline"
-                type="date"
-            >
-
-            <label>Importance</label>
-
-            <select id="taskImportance">
-                <option value="10">Critical</option>
-                <option value="8">High</option>
-                <option value="6">Medium</option>
-                <option value="3">Low</option>
-            </select>
-
-            <label>Difficulty</label>
-
-            <select id="taskDifficulty">
-                <option value="10">Very Hard</option>
-                <option value="8">Hard</option>
-                <option value="6">Medium</option>
-                <option value="3">Easy</option>
-            </select>
-
-
-            <div class="modal-buttons">
-
-                <button id="closeModal">
-                    Cancel
-                </button>
-
-                <button id="createTask">
-                    Create Task
-                </button>
-
-            </div>
-
+            <section class="task-column">
+              <div class="column-title"><span class="status-dot done"></span><h3>Completed</h3><b id="doneBadge">0</b></div>
+              <div class="task-list" id="doneList"></div>
+            </section>
+          </div>
         </div>
 
-    </div>
+        <aside class="right-rail">
+          <section class="panel">
+            <div class="panel-heading"><h2>Study Calendar</h2><span class="calendar-month" id="calendarMonth"></span></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </section>
 
+          <section class="panel">
+            <div class="panel-heading"><h2>Upcoming Deadlines</h2></div>
+            <div class="deadline-list" id="deadlineList"></div>
+          </section>
 
-    <script src="js/app.js"></script>
+          <section class="panel pomodoro-panel">
+            <div class="panel-heading"><h2>Focus Timer</h2><span>◉</span></div>
+            <p>One task at a time. You've got this.</p>
+            <div class="timer-ring"><div><strong id="timerDisplay">25:00</strong><small id="timerMode">Focus session</small></div></div>
+            <div class="timer-controls">
+              <button class="primary-button" id="timerStart">▶ Start</button>
+              <button class="secondary-button" id="timerReset">↺ Reset</button>
+            </div>
+            <div class="timer-presets">
+              <button class="selected" data-minutes="25">Focus 25m</button>
+              <button data-minutes="5">Short 5m</button>
+              <button data-minutes="15">Long 15m</button>
+            </div>
+          </section>
+        </aside>
+      </section>
 
+      <section class="bottom-grid">
+        <article class="panel mini-panel">
+          <div class="panel-heading"><h2>Weekly Progress</h2><span class="legend"><i></i> Completed</span></div>
+          <div class="chart" id="weeklyChart"></div>
+        </article>
+        <article class="panel mini-panel">
+          <div class="panel-heading"><h2>Subject Overview</h2></div>
+          <div class="subject-list" id="subjectList"></div>
+        </article>
+        <article class="panel mini-panel activity-panel">
+          <div class="panel-heading"><h2>Study Activity</h2></div>
+          <div id="activityList"></div>
+        </article>
+      </section>
+
+      <footer>Built for your goals <span>✦</span> One task at a time.</footer>
+    </main>
+  </div>
+
+  <dialog id="taskDialog">
+    <form id="taskForm">
+      <div class="dialog-heading">
+        <div><h2 id="dialogTitle">Create New Task</h2><p>Add a task to your academic planner.</p></div>
+        <button class="close-button" type="button" id="closeDialog" aria-label="Close">×</button>
+      </div>
+      <label>Task title
+        <input id="taskTitle" required maxlength="120" placeholder="e.g. Complete data structures assignment">
+      </label>
+      <label>Description
+        <textarea id="taskDescription" rows="3" maxlength="500" placeholder="What do you need to do?"></textarea>
+      </label>
+      <div class="form-row">
+        <label>Subject
+          <input id="taskSubject" maxlength="50" placeholder="e.g. Computer Science" required>
+        </label>
+        <label>Due date
+          <input id="taskDue" type="date" required>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Priority
+          <select id="taskPriority">
+            <option value="high">High</option>
+            <option value="medium" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="taskStatus">
+            <option value="todo">To Do</option>
+            <option value="doing">In Progress</option>
+            <option value="done">Completed</option>
+          </select>
+        </label>
+      </div>
+      <div class="dialog-actions">
+        <button class="secondary-button" type="button" id="cancelDialog">Cancel</button>
+        <button class="primary-button" type="submit">Save Task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
 </body>
 </html>

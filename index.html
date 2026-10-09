@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXUS — Student Task Manager</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                NEX<span>US</span>
+            </div>
+
+            <nav>
+                <button class="nav-item active">◈ Dashboard</button>
+                <button class="nav-item">✓ Tasks</button>
+                <button class="nav-item">▣ Calendar</button>
+                <button class="nav-item">◉ Analytics</button>
+                <button class="nav-item">◆ Subjects</button>
+                <button class="nav-item">⚙ Settings</button>
+            </nav>
+
+            <div class="profile">
+                <div class="avatar">N</div>
+
+                <div>
+                    <strong>Student</strong>
+                    <small>Level 12 • 1840 XP</small>
+                </div>
+            </div>
+
+        </aside>
+
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Good Evening 👋</h1>
+                    <p>Your academic command center</p>
+                </div>
+
+                <button class="add-btn" id="openModal">
+                    + New Task
+                </button>
+
+            </header>
+
+
+            <section class="stats">
+
+                <div class="stat-card">
+                    <span>Total Tasks</span>
+                    <strong id="totalTasks">0</strong>
+                    <small>All assignments</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Completed</span>
+                    <strong id="completedTasks">0</strong>
+                    <small>Keep going</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>At Risk</span>
+                    <strong id="riskTasks">0</strong>
+                    <small>Need attention</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Streak</span>
+                    <strong>7 🔥</strong>
+                    <small>Days active</small>
+                </div>
+
+            </section>
+
+
+            <section class="dashboard">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Priority Tasks</h2>
+
+                        <span>
+                            AI Priority Engine
+                        </span>
+                    </div>
+
+                    <div id="taskList"></div>
+
+                </div>
+
+
+                <div class="right-column">
+
+                    <div class="panel">
+
+                        <h2>Priority Engine</h2>
+
+                        <div class="priority-score"
+                             id="priorityScore">
+                            0
+                        </div>
+
+                        <p>Current highest priority</p>
+
+                        <div class="metric">
+                            <div>
+                                <span>Urgency</span>
+                                <span id="urgencyValue">0%</span>
+                            </div>
+
+                            <div class="bar">
+                                <div id="urgencyBar"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="metric">
+                            <div>
+                                <span>Importance</span>
+                                <span id="importanceValue">0%</span>
+                            </div>
+
+                            <div class="bar">
+                                <div id="importanceBar"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="metric">
+                            <div>
+                                <span>Difficulty</span>
+                                <span id="difficultyValue">0%</span>
+                            </div>
+
+                            <div class="bar">
+                                <div id="difficultyBar"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="xp-header">
+                            <h2>Level 12</h2>
+                            <span>1840 XP</span>
+                        </div>
+
+                        <div class="xp-bar">
+                            <div></div>
+                        </div>
+
+                        <small>
+                            660 XP until Level 13
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- CREATE TASK MODAL -->
+
+    <div class="modal" id="taskModal">
+
+        <div class="modal-box">
+
+            <h2>Create New Task</h2>
+
+            <label>Task Name</label>
+            <input
+                id="taskName"
+                placeholder="Compiler Design Assignment"
+            >
+
+            <label>Subject</label>
+            <input
+                id="taskSubject"
+                placeholder="Compiler Design"
+            >
+
+            <label>Deadline</label>
+            <input
+                id="taskDeadline"
+                type="date"
+            >
+
+            <label>Importance</label>
+
+            <select id="taskImportance">
+                <option value="10">Critical</option>
+                <option value="8">High</option>
+                <option value="6">Medium</option>
+                <option value="3">Low</option>
+            </select>
+
+            <label>Difficulty</label>
+
+            <select id="taskDifficulty">
+                <option value="10">Very Hard</option>
+                <option value="8">Hard</option>
+                <option value="6">Medium</option>
+                <option value="3">Easy</option>
+            </select>
+
+
+            <div class="modal-buttons">
+
+                <button id="closeModal">
+                    Cancel
+                </button>
+
+                <button id="createTask">
+                    Create Task
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
